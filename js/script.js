@@ -2,6 +2,8 @@ var app = new Vue({
 
     el: '#root',
     data: {
+        contactIndex: 0,
+        userMessage: '',
         // Contatti Whatsapp
         contacts: [
             // Michele
@@ -94,6 +96,8 @@ var app = new Vue({
         ]
     },
     methods: {
-        
+        showChat(index) {
+            this.contactIndex = index;
+        }
     }
 });

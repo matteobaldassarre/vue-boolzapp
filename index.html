@@ -83,16 +83,22 @@
                         <!-- End Search Bar -->
 
                         <!-- Contacts -->
-                        <div class="contacts">
-                            <div class="contact">
-                                <div class="contact-avatar">
-                                    <img src="img/avatar_1.jpg" alt="">
+                        <ul class="contacts">
+                            <!-- Contact -->
+                            <li class="contact" v-for="(contact, index) in contacts" @click="showChat(index)">
+                                <!-- Contact Info -->
+                                <div class="contact-info">
+                                    <!-- Avatar -->
+                                    <img :src="`img/avatar${contact.avatar}.jpg`" :alt="`avatar${contact.avatar}`">
+                                    <!-- Name -->
                                     <span class="contact-name">
-                                        Michele
+                                        {{ contact.name }}
                                     </span>
                                 </div>
-                            </div>
-                        </div>
+                                <!-- End Contact Info -->
+                            </li>
+                            <!-- End Contact -->
+                        </ul>
                         <!-- End Contacts -->
 
                     </div>
@@ -108,13 +114,13 @@
                             <ul class="chat-info">
                                 <!-- Chat Avatar -->
                                 <li class="chat-avatar">
-                                    <img src="img/avatar_1.jpg" alt="avatar_1">
+                                    <img :src=" `img/avatar${contacts[contactIndex].avatar}.jpg` " alt="`avatar${contacts[contactIndex].avatar}`">
                                 </li>
                         
                                 <!-- Chat Contact Info -->
                                 <li>
                                     <div class="chat-contact-info">
-                                        <div class="font-size-15">Michele</div>
+                                        <div class="font-size-15">{{ contacts[contactIndex].name }}</div>
                                         <div class="grey-txt font-size-12">Ultimo accesso oggi alle</div>
                                     </div>
                                 </li>
@@ -136,14 +142,21 @@
                             </ul>
                             <!-- End Chat Info -->
 
-                            <div class="chat-messages">
-
+                            <!-- Chat Messages Section -->
+                            <div class="chat-messages-section">
+                                <div v-for="(message, index) in contacts[contactIndex].messages" class="chat-messages">
+                                    <div :class="message.status">
+                                        {{ message.text }}
+                                        <div class="message-date">10/01/2020 15:30:55</div>
+                                    </div>
+                                </div>
                             </div>
+                            <!-- End Chat Messages Section -->
 
                             <!-- Chat Bar -->
                             <div class="chat-bar">
                                 <a href="#"><i class="far fa-smile"></i></a>
-                                <input type="text" placeholder="Scrivi un messaggio">
+                                <input type="text" placeholder="Scrivi un messaggio" v-model="userMessage">
                                 <a href="#"><i class="fas fa-microphone"></i></a>
                             </div>
                             <!-- End Chat Bar -->

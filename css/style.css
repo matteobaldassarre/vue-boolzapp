@@ -21,8 +21,8 @@
 .interface-container {
     width: 1200px;
     margin: auto;
-    height: 90vh;
-    background-color: bisque;
+    height: 100%;
+    background-color: white;
 }
 
 /* Columns Interface ClearFix */
@@ -39,11 +39,12 @@
 }
 
 .interface-container .col-left {
+    height: 100%;
     width: 35%;
-    border-right: 1px solid rgba(185, 185, 185, 0.623);
 }
 .interface-container .col-right {
     width: 65%;
+    border-left: 1px solid rgba(185, 185, 185, 0.623);
 }
 
 /* Contacts Column */
@@ -120,11 +121,22 @@ img[alt="my-avatar"] {
 }
 
 /* Contacts */
+.contacts {
+    overflow-y: auto;
+}
+
 .contact {
     background-color: white;
-    padding: 5px 20px;
+    transition: background-color 0.2s;
+    padding: 10px 20px;
+    border-bottom: 1px solid #e7e7e7ca;
 }
-.contact-avatar img {
+
+.contact:hover {
+    background-color: rgba(224, 224, 224, 0.301)
+}
+
+.contact-info img {
     width: 50px;
     border-radius: 50%;
 }
@@ -134,6 +146,10 @@ img[alt="my-avatar"] {
     position: relative;
     top: -30px;
     left: 10px;
+}
+
+.contacts li {
+    display: block;
 }
 
 
@@ -163,9 +179,44 @@ img[alt="my-avatar"] {
 }
 
 /* Chat Messages */
-.chat-messages {
-    height: calc( 90vh - 114px );
+.chat-messages-section {
+    height: calc( 90vh - 113px );
     background-image: url(../img/mine.jpg);
+    padding: 30px 50px;
+    overflow-y: auto;
+}
+
+.chat-messages {
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-messages .sent,
+.chat-messages .received {
+    width: fit-content;
+    position: relative;
+    padding: 10px 40px 15px 12px;
+    border-radius: 10px;
+    font-size: 15px;
+    margin: 10px 0px;
+}
+
+.chat-messages .sent {
+    background-color: white;
+}
+
+.chat-messages .received {
+    align-self: flex-end;
+    background-color: #d5f9ba;
+}
+
+.chat-messages .message-date {
+    font-size: 10px;
+    position: absolute;
+    top: 28px;
+    right: 10px;
+    color: #a8a8a8;
+    user-select: none;
 }
 
 /* Chat Bar */
