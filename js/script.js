@@ -3,7 +3,9 @@ var app = new Vue({
     el: '#root',
     data: {
         contactIndex: 0,
-        userMessage: '',
+        searchContact: '',
+        writeMessageInput: '', 
+        chatButton: 'microphone',
         // Contatti Whatsapp
         contacts: [
             // Michele
@@ -98,6 +100,15 @@ var app = new Vue({
     methods: {
         showChat(index) {
             this.contactIndex = index;
+        },
+        filterChat() {
+            this.contacts.forEach((element) => {                
+                if (element.name.toLowerCase().includes(this.searchContact.toLowerCase())) {
+                    element.visible = true;
+                } else {
+                    element.visible = false;
+                }
+            });
         }
     }
 });

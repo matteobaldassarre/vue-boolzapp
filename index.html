@@ -77,7 +77,7 @@
                         <div class="search-bar">
                             <div class="search-bar-container">
                                 <i class="fas fa-search grey-txt"></i>
-                                <input class="search-bar-input" type="text" placeholder="Cerca o inizia una nuova chat">
+                                <input v-model="searchContact" class="search-bar-input" type="text" placeholder="Cerca o inizia una nuova chat" @keyup="filterChat">
                             </div>
                         </div>
                         <!-- End Search Bar -->
@@ -85,7 +85,7 @@
                         <!-- Contacts -->
                         <ul class="contacts">
                             <!-- Contact -->
-                            <li class="contact" v-for="(contact, index) in contacts" @click="showChat(index)">
+                            <li class="contact" v-if="contact.visible == true" v-for="(contact, index) in contacts" @click="showChat(index)">
                                 <!-- Contact Info -->
                                 <div class="contact-info">
                                     <!-- Avatar -->
@@ -93,6 +93,9 @@
                                     <!-- Name -->
                                     <span class="contact-name">
                                         {{ contact.name }}
+                                    </span>
+                                    <span class="chat-anticipation">
+                                        {{ contact.messages[0].text }}
                                     </span>
                                 </div>
                                 <!-- End Contact Info -->
@@ -121,7 +124,7 @@
                                 <li>
                                     <div class="chat-contact-info">
                                         <div class="font-size-15">{{ contacts[contactIndex].name }}</div>
-                                        <div class="grey-txt font-size-12">Ultimo accesso oggi alle</div>
+                                        <div class="grey-txt font-size-12">Ultimo accesso oggi alle 09:32</div>
                                     </div>
                                 </li>
                         
@@ -156,8 +159,9 @@
                             <!-- Chat Bar -->
                             <div class="chat-bar">
                                 <a href="#"><i class="far fa-smile"></i></a>
-                                <input type="text" placeholder="Scrivi un messaggio" v-model="userMessage">
-                                <a href="#"><i class="fas fa-microphone"></i></a>
+                                <input type="text" placeholder="Scrivi un messaggio" v-model="writeMessageInput">
+                                <a href="#" v-if="writeMessageInput == 0"><i class="fas fa-microphone"></i></a>
+                                <a href="#" v-else><i class="fas fa-reply"></i></a>
                             </div>
                             <!-- End Chat Bar -->
                         

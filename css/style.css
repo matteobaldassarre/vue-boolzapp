@@ -136,6 +136,17 @@ img[alt="my-avatar"] {
     background-color: rgba(224, 224, 224, 0.301)
 }
 
+.contact-info {
+    position: relative;
+}
+.chat-anticipation {
+    position: absolute;
+    top: 26px;
+    left: 64px;
+    font-size: 15px;
+    color: #535353a9;
+}
+
 .contact-info img {
     width: 50px;
     border-radius: 50%;
@@ -171,7 +182,7 @@ img[alt="my-avatar"] {
 
 .chat-info li:nth-child(2) {
     padding-left: 10px;
-    padding-right: 65%;
+    padding-right: 60%;
 }
 
 .chat-info li:nth-child(4) {
@@ -231,7 +242,7 @@ img[alt="my-avatar"] {
     padding: 15px 40px 15px 15px;
     border-radius: 3px;
     width: 82%;
-    margin: 0 25px;
+    margin: 0 20px;
 }
 
 .chat-bar input:focus {
@@ -242,5 +253,8 @@ img[alt="my-avatar"] {
     font-size: 20px;
     color: rgba(97, 97, 97, 0.877);
     vertical-align: middle;
+}
+.fa-reply {
+    width: 13.75px;
 }
 
