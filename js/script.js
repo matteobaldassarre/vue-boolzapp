@@ -5,7 +5,6 @@ var app = new Vue({
         contactIndex: 0,
         searchContact: '',
         writeMessageInput: '', 
-        chatButton: 'microphone',
         // Contatti Whatsapp
         contacts: [
             // Michele
@@ -109,6 +108,24 @@ var app = new Vue({
                     element.visible = false;
                 }
             });
+        },
+        sendMessage() {
+            if (this.writeMessageInput.length > 0) {
+                this.contacts[this.contactIndex].messages.push({
+                    date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
+                    text: this.writeMessageInput,
+                    status: 'sent'
+                });
+            }
+            this.writeMessageInput = ''
+
+            setTimeout( () => { 
+                this.contacts[this.contactIndex].messages.push({
+                    date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
+                    text: 'ok',
+                    status: 'received'
+                });
+            }, 1000);
         }
     }
 });
