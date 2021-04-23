@@ -95,7 +95,10 @@
                                         {{ contact.name }}
                                     </span>
                                     <span class="chat-anticipation">
-                                        {{ contact.messages[0].text }}
+                                        {{ contact.messages[contact.messages.length - 1].text.substring(0, 30) + '...' }}
+                                    </span>
+                                    <span class="chat-date">
+                                        {{ contact.messages[contact.messages.length - 1].date}}
                                     </span>
                                 </div>
                                 <!-- End Contact Info -->
@@ -150,6 +153,20 @@
                                 <div v-for="(message, index) in contacts[contactIndex].messages" class="chat-messages">
                                     <div :class="message.status">
                                         {{ message.text }}
+                                        <!-- Message Dropdown -->
+                                        <div class="dropdown">
+                                            <!-- DropDown Icon -->
+                                            <a href="#" @click="toggleDropdown(index)"><span class="message-dropdown"><i class="fas fa-chevron-down"></i></span></a>
+                                            <ul class="inside-dropdown" v-show="message.userClick">
+                                                <li>
+                                                    <a href="#">Info Messaggio</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Elimina Messaggio</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- End Message Dropdown -->
                                         <div class="message-date">{{ message.date }}</div>
                                     </div>
                                 </div>

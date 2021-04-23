@@ -162,6 +162,14 @@ img[alt="my-avatar"] {
     left: 10px;
 }
 
+.contacts .chat-date {
+    position: absolute;
+    top: 3px;
+    right: 0;
+    color: #535353a9;
+    font-size: 13px;
+}
+
 .contacts li {
     display: block;
 }
@@ -231,6 +239,37 @@ img[alt="my-avatar"] {
     top: 5px;
     color: #a8a8a8;
     user-select: none;
+}
+
+/* Message Dropdown */ 
+.message-dropdown {
+    vertical-align: middle;
+    padding-left: 5px;
+    font-size: 12px;
+    color: #a8a8a8;
+    cursor: pointer;
+}
+
+.chat-messages-section .dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.chat-messages-section .inside-dropdown {
+    text-align: center;
+    position: absolute;
+    top: 15px;
+    left: -113px;
+    width: max-content;
+    background-color: white;
+    margin-top: 18px;
+    padding: 8px;
+    box-shadow: 0px 0px 5px 1px rgba(151, 151, 151, 0.555);
+}
+
+.chat-messages-section .inside-dropdown li {
+    display: block;
+    padding-bottom: 5px;
 }
 
 /* Chat Bar */
