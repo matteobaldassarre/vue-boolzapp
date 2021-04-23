@@ -85,7 +85,7 @@
                         <!-- Contacts -->
                         <ul class="contacts">
                             <!-- Contact -->
-                            <li class="contact" v-if="contact.visible == true" v-for="(contact, index) in contacts" @click="showChat(index)">
+                            <li class="contact" v-if="contact.visible == true" v-for="(contact, index) in contacts" @click="showChat(index), closeDropdown()">
                                 <!-- Contact Info -->
                                 <div class="contact-info">
                                     <!-- Avatar -->
@@ -152,17 +152,19 @@
                             <div class="chat-messages-section">
                                 <div v-for="(message, index) in contacts[contactIndex].messages" class="chat-messages">
                                     <div :class="message.status">
-                                        {{ message.text }}
+                                        <span v-if="message.shown">{{ message.text }}</span>
+                                        <em class="grey-txt" v-else>hai eliminato questo messaggio</em>
                                         <!-- Message Dropdown -->
                                         <div class="dropdown">
                                             <!-- DropDown Icon -->
                                             <a href="#" @click="toggleDropdown(index)"><span class="message-dropdown"><i class="fas fa-chevron-down"></i></span></a>
+                                            <!-- DropDown Options -->
                                             <ul class="inside-dropdown" v-show="message.userClick">
                                                 <li>
                                                     <a href="#">Info Messaggio</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">Elimina Messaggio</a>
+                                                    <a href="#" @click="deleteMessage(index)">Elimina Messaggio</a>
                                                 </li>
                                             </ul>
                                         </div>
