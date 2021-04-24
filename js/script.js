@@ -13,6 +13,7 @@ var app = new Vue({
                 name: 'Michele',
                 avatar: '_1',
                 visible: true,
+                selected: '',
                 messages: [
                     {
                         date: '10/01/2020 15:30:55',
@@ -42,6 +43,7 @@ var app = new Vue({
                 name: 'Fabio',
                 avatar: '_2',
                 visible: true,
+                selected: '',
                 messages: [
                     {
                         date: '20/03/2020 16:30:00',
@@ -71,6 +73,7 @@ var app = new Vue({
                 name: 'Samuele',
                 avatar: '_3',
                 visible: true,
+                selected: '',
                 messages: [
                     {
                         date: '28/03/2020 10:10:40',
@@ -100,6 +103,7 @@ var app = new Vue({
                 name: 'Luigi',
                 avatar: '_4',
                 visible: true,
+                selected: '',
                 messages: [
                     {
                         date: '10/01/2020 15:30:55',
@@ -133,7 +137,7 @@ var app = new Vue({
             });
         },
         sendMessage() {
-            if (this.writeMessageInput.length > 0) {
+            if (this.writeMessageInput != '') {
                 this.contacts[this.contactIndex].messages.push({
                     date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
                     text: this.writeMessageInput,
@@ -141,18 +145,19 @@ var app = new Vue({
                     userClick: false,
                     shown: true
                 });
-            }
-            this.writeMessageInput = ''
 
-            setTimeout( () => { 
-                this.contacts[this.contactIndex].messages.push({
-                    date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
-                    text: 'ok, volentieri!',
-                    status: 'received',
-                    userClick: false,
-                    shown: true
-                });
-            }, 1000);
+                this.writeMessageInput = ''
+
+                setTimeout(() => {
+                    this.contacts[this.contactIndex].messages.push({
+                        date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
+                        text: 'ok, volentieri!',
+                        status: 'received',
+                        userClick: false,
+                        shown: true
+                    });
+                }, 1000);
+            }
         },
         toggleDropdown(index) {
             let indice = index;
@@ -173,6 +178,16 @@ var app = new Vue({
                 if (indice == index) {
                     element.shown = false;
                     element.userClick = false;
+                }
+            });
+        },
+        selectContact(index) {
+            let indice = index;
+            this.contacts.forEach((element, index) => {
+                if (indice == index) {
+                    element.selected = 'selectedActive';
+                } else if (indice == index || element.selected == 'selectedActive'){
+                    element.selected = '';
                 }
             });
         }

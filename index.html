@@ -84,7 +84,11 @@
                         <!-- Contacts -->
                         <ul class="contacts">
                             <!-- Contact -->
-                            <li class="contact" v-if="contact.visible == true" v-for="(contact, index) in contacts" @click="showChat(index), closeDropdown()">
+                            <li class="contact" 
+                            v-if="contact.visible == true" 
+                            v-for="(contact, index) in contacts" 
+                            @click="showChat(index), closeDropdown(), selectContact(index)" 
+                            :class="contact.selected">
                                 <!-- Contact Info -->
                                 <div class="contact-info">
                                     <!-- Avatar -->
