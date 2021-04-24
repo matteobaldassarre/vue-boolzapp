@@ -283,6 +283,7 @@ img[alt="my-avatar"] {
     margin-top: 18px;
     padding: 8px;
     box-shadow: 0px 0px 5px 1px rgba(151, 151, 151, 0.555);
+    z-index: 1;
 }
 
 .chat-messages-section .inside-dropdown li {

@@ -13,7 +13,7 @@ var app = new Vue({
                 name: 'Michele',
                 avatar: '_1',
                 visible: true,
-                selected: '',
+                selected: 'selectedActive',
                 messages: [
                     {
                         date: '10/01/2020 15:30:55',
@@ -136,8 +136,51 @@ var app = new Vue({
                 }
             });
         },
+        // Funzione che invia il messaggio al computer e fa partire una risposta automatica in base al messaggio
         sendMessage() {
-            if (this.writeMessageInput != '') {
+            if (this.writeMessageInput === 'hey ciao, come stai?' || this.writeMessageInput === 'come stai?') {
+                this.contacts[this.contactIndex].messages.push({
+                    date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
+                    text: this.writeMessageInput,
+                    status: 'sent',
+                    userClick: false,
+                    shown: true
+                });
+
+                this.writeMessageInput = ''
+
+                setTimeout(() => {
+                    this.contacts[this.contactIndex].messages.push({
+                        date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
+                        text: 'hey, tutto bene tu?',
+                        status: 'received',
+                        userClick: false,
+                        shown: true
+                    });
+                }, 1000);
+            } else if (this.writeMessageInput === 'bene grazie!' ) {
+                
+                this.contacts[this.contactIndex].messages.push({
+                    date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
+                    text: this.writeMessageInput,
+                    status: 'sent',
+                    userClick: false,
+                    shown: true
+                });
+
+                this.writeMessageInput = ''
+
+                setTimeout(() => {
+                    this.contacts[this.contactIndex].messages.push({
+                        date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
+                        text: 'mi fa piacere :)',
+                        status: 'received',
+                        userClick: false,
+                        shown: true
+                    });
+                }, 1000);
+
+            } else if (this.writeMessageInput.length > 0) {
                 this.contacts[this.contactIndex].messages.push({
                     date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
                     text: this.writeMessageInput,
@@ -157,8 +200,9 @@ var app = new Vue({
                         shown: true
                     });
                 }, 1000);
-            }
+            } 
         },
+        // Funzione per aprire il dropdown del messaggio in base all'indice di esso
         toggleDropdown(index) {
             let indice = index;
             this.contacts[this.contactIndex].messages.forEach((element, index) => {
@@ -167,11 +211,13 @@ var app = new Vue({
                 }
             });
         },
+        // Funzione che chiude il dropdown
         closeDropdown () {
             this.contacts[this.contactIndex].messages.forEach((element) => {
                 element.userClick = false;
             });
         },
+        // Funzione che elimina il messaggio selezionato in base all'indice
         deleteMessage(index) {
             let indice = index;
             this.contacts[this.contactIndex].messages.forEach((element, index) => {
@@ -181,6 +227,7 @@ var app = new Vue({
                 }
             });
         },
+        // Funzione che seleziona il contatto nella lista contatti mantenendolo attivo
         selectContact(index) {
             let indice = index;
             this.contacts.forEach((element, index) => {
