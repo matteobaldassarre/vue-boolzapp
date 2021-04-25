@@ -243,12 +243,16 @@ var app = new Vue({
                 }
             });
         },
-        lastSeenFn() {
-            this.contacts[this.contactIndex].messages.forEach((element, index) => {
-                if (index == 1) {
-                    this.contacts.lastSeen = element.date;
-                }
-            });
+        // Funzione che permette di switchare da light a dark mode
+        darkThemeOn() {
+            let darkTheme = document.getElementById('darkmode');
+            let darkThemeHref = darkTheme.getAttribute('href');
+
+            if (darkThemeHref == 'css/darkmode.css') {
+                darkTheme.removeAttribute("href", "css/darkmode.css");
+            } else {
+                darkTheme.setAttribute("href", "css/darkmode.css");
+            }
         }
     }
 });
