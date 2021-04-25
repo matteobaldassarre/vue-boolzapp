@@ -2,10 +2,9 @@ var app = new Vue({
 
     el: '#root',
     data: {
-        contactIndex: 0,
-        searchContact: '',
-        writeMessageInput: '',
-        active: false,
+        contactIndex: 0, // Indice del contatto
+        searchContact: '', // Input area di base vuota per cercare i contatti
+        writeMessageInput: '', // Input area di base vuota per inviare un messaggio
         // Contatti Whatsapp
         contacts: [
             // Michele
@@ -14,6 +13,7 @@ var app = new Vue({
                 avatar: '_1',
                 visible: true,
                 selected: 'selectedActive',
+                lastSeen: '',
                 messages: [
                     {
                         date: '10/01/2020 15:30:55',
@@ -44,6 +44,7 @@ var app = new Vue({
                 avatar: '_2',
                 visible: true,
                 selected: '',
+                lastSeen: '',
                 messages: [
                     {
                         date: '20/03/2020 16:30:00',
@@ -74,6 +75,7 @@ var app = new Vue({
                 avatar: '_3',
                 visible: true,
                 selected: '',
+                lastSeen: '',
                 messages: [
                     {
                         date: '28/03/2020 10:10:40',
@@ -104,6 +106,7 @@ var app = new Vue({
                 avatar: '_4',
                 visible: true,
                 selected: '',
+                lastSeen: '',
                 messages: [
                     {
                         date: '10/01/2020 15:30:55',
@@ -124,9 +127,11 @@ var app = new Vue({
         ]
     },
     methods: {
+        // Funzione che mostra la chat in base all'indice del contatto
         showChat(index) {
             this.contactIndex = index;
         },
+        // Funzione per filtrare le chat per nome del contatto tramite la search bar nella lista contatti
         filterChat() {
             this.contacts.forEach((element) => {                
                 if (element.name.toLowerCase().includes(this.searchContact.toLowerCase())) {
@@ -235,6 +240,13 @@ var app = new Vue({
                     element.selected = 'selectedActive';
                 } else if (indice == index || element.selected == 'selectedActive'){
                     element.selected = '';
+                }
+            });
+        },
+        lastSeenFn() {
+            this.contacts[this.contactIndex].messages.forEach((element, index) => {
+                if (index == 1) {
+                    this.contacts.lastSeen = element.date;
                 }
             });
         }

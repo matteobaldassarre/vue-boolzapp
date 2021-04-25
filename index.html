@@ -130,7 +130,7 @@
                                 <li>
                                     <div class="chat-contact-info">
                                         <div class="font-size-15">{{ contacts[contactIndex].name }}</div>
-                                        <div class="grey-txt font-size-12">Ultimo accesso oggi alle 09:32</div>
+                                        <div class="grey-txt font-size-12">Ultimo accesso oggi alle {{ contacts[contactIndex].messages[contacts[contactIndex].messages.length - 1].date.substring(10, 16) }}</div>
                                     </div>
                                 </li>
                         
@@ -156,7 +156,7 @@
                                 <div v-for="(message, index) in contacts[contactIndex].messages" class="chat-messages">
                                     <div :class="message.status">
                                         <span v-if="message.shown">{{ message.text }}</span>
-                                        <em class="grey-txt" v-else>hai eliminato questo messaggio</em>
+                                        <em class="grey-txt" v-else><i class="fas fa-ban"></i> hai eliminato questo messaggio</em>
                                         <!-- Message Dropdown -->
                                         <div class="dropdown">
                                             <!-- DropDown Icon -->
