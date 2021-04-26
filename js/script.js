@@ -153,9 +153,10 @@ var app = new Vue({
                 });
 
                 this.writeMessageInput = ''
+                const sentMessageContactIndex = this.contactIndex;
 
                 setTimeout(() => {
-                    this.contacts[this.contactIndex].messages.push({
+                    this.contacts[sentMessageContactIndex].messages.push({
                         date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
                         text: 'hey, tutto bene tu?',
                         status: 'received',
@@ -174,9 +175,10 @@ var app = new Vue({
                 });
 
                 this.writeMessageInput = ''
+                const sentMessageContactIndex = this.contactIndex;
 
                 setTimeout(() => {
-                    this.contacts[this.contactIndex].messages.push({
+                    this.contacts[sentMessageContactIndex].messages.push({
                         date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
                         text: 'mi fa piacere :)',
                         status: 'received',
@@ -195,9 +197,10 @@ var app = new Vue({
                 });
 
                 this.writeMessageInput = ''
+                const sentMessageContactIndex = this.contactIndex;
 
                 setTimeout(() => {
-                    this.contacts[this.contactIndex].messages.push({
+                    this.contacts[sentMessageContactIndex].messages.push({
                         date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
                         text: 'ok, volentieri!',
                         status: 'received',
