@@ -5,6 +5,7 @@ var app = new Vue({
         contactIndex: 0, // Indice del contatto
         searchContact: '', // Input area di base vuota per cercare i contatti
         writeMessageInput: '', // Input area di base vuota per inviare un messaggio
+        darkMode: false,
         // Contatti Whatsapp
         contacts: [
             // Michele
@@ -249,13 +250,15 @@ var app = new Vue({
         // Funzione che permette di switchare da light a dark mode
         darkThemeOn() {
             let darkTheme = document.getElementById('darkmode');
-            let darkThemeHref = darkTheme.getAttribute('href');
 
-            if (darkThemeHref == 'css/darkmode.css') {
+            if (this.darkMode) {
                 darkTheme.removeAttribute("href", "css/darkmode.css");
+                this.darkMode = false;
             } else {
                 darkTheme.setAttribute("href", "css/darkmode.css");
+                this.darkMode = true;
             }
         }
     }
 });
+
