@@ -125,6 +125,29 @@ var app = new Vue({
                     }
                 ],
             },
+        ],
+        // Lista delle risposte automatiche del computer
+        automaticReplies: [
+            {
+                userText: 'hey',
+                computerReply: 'hey ciao!'
+            },
+            {
+                userText: 'hey ciao, come stai?',
+                computerReply: 'hey, tutto bene tu?'
+            },
+            {
+                userText: 'bene grazie!',
+                computerReply: 'mi fa piacere :)'
+            },
+            {
+                userText: 'andiamo al cinema?',
+                computerReply: 'ok, volentieri!'
+            },
+            {
+                userText: 'ciao',
+                computerReply: 'hey ciao!'
+            },
         ]
     },
     methods: {
@@ -144,72 +167,35 @@ var app = new Vue({
         },
         // Funzione che invia il messaggio al computer e fa partire una risposta automatica in base al messaggio
         sendMessage() {
-            if (this.writeMessageInput === 'hey ciao, come stai?' || this.writeMessageInput === 'come stai?') {
-                this.contacts[this.contactIndex].messages.push({
+            let computerReply = 'Non ho capito, mi dispiace!';
+
+            this.automaticReplies.forEach( (element) => {
+                if (this.writeMessageInput == element.userText) {
+
+                    computerReply = element.computerReply;
+                }
+            });
+
+            this.contacts[this.contactIndex].messages.push({
+                date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
+                text: this.writeMessageInput,
+                status: 'sent',
+                userClick: false,
+                shown: true
+            });
+
+            this.writeMessageInput = ''
+            const sentMessageContactIndex = this.contactIndex;
+
+            setTimeout(() => {
+                this.contacts[sentMessageContactIndex].messages.push({
                     date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
-                    text: this.writeMessageInput,
-                    status: 'sent',
+                    text: computerReply,
+                    status: 'received',
                     userClick: false,
                     shown: true
                 });
-
-                this.writeMessageInput = ''
-                const sentMessageContactIndex = this.contactIndex;
-
-                setTimeout(() => {
-                    this.contacts[sentMessageContactIndex].messages.push({
-                        date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
-                        text: 'hey, tutto bene tu?',
-                        status: 'received',
-                        userClick: false,
-                        shown: true
-                    });
-                }, 1000);
-            } else if (this.writeMessageInput === 'bene grazie!' ) {
-                
-                this.contacts[this.contactIndex].messages.push({
-                    date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
-                    text: this.writeMessageInput,
-                    status: 'sent',
-                    userClick: false,
-                    shown: true
-                });
-
-                this.writeMessageInput = ''
-                const sentMessageContactIndex = this.contactIndex;
-
-                setTimeout(() => {
-                    this.contacts[sentMessageContactIndex].messages.push({
-                        date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
-                        text: 'mi fa piacere :)',
-                        status: 'received',
-                        userClick: false,
-                        shown: true
-                    });
-                }, 1000);
-
-            } else if (this.writeMessageInput.length > 0) {
-                this.contacts[this.contactIndex].messages.push({
-                    date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
-                    text: this.writeMessageInput,
-                    status: 'sent',
-                    userClick: false,
-                    shown: true
-                });
-
-                this.writeMessageInput = ''
-                const sentMessageContactIndex = this.contactIndex;
-
-                setTimeout(() => {
-                    this.contacts[sentMessageContactIndex].messages.push({
-                        date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
-                        text: 'ok, volentieri!',
-                        status: 'received',
-                        userClick: false,
-                        shown: true
-                    });
-                }, 1000);
-            } 
+            }, 1000);
         },
         // Funzione per aprire il dropdown del messaggio in base all'indice di esso
         toggleDropdown(index) {
