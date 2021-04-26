@@ -308,6 +308,19 @@ img[alt="my-avatar"] {
     cursor: pointer;
 }
 
+.dropdown .fa-chevron-down {
+    visibility: hidden;
+}
+
+.sent:hover .fa-chevron-down,
+.received:hover .fa-chevron-down {
+    visibility: visible;
+}
+
+.delete-message-dd:hover {
+    text-shadow: 0px 0px 10px #a8a8a8;
+}
+
 .chat-messages-section .dropdown {
     position: relative;
     display: inline-block;
