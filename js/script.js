@@ -2,11 +2,11 @@ var app = new Vue({
 
     el: '#root',
     data: {
-        contactIndex: 0, // Indice del contatto
-        searchContact: '', // Input area di base vuota per cercare i contatti
-        writeMessageInput: '', // Input area di base vuota per inviare un messaggio
+        contactIndex: 0, // Index of the active contact
+        searchContact: '', // Empty input area for the contact search bar
+        writeMessageInput: '', // Empty input area to send a message
         darkMode: false,
-        // Contatti Whatsapp
+        // Boolzap Contacts
         contacts: [
             // Michele
             {
@@ -15,7 +15,7 @@ var app = new Vue({
                 visible: true,
                 selected: 'selectedActive',
                 lastSeen: '',
-                indiceTest: '',
+                currentDeletedMessageIndex: '',
                 messages: [
                     {
                         date: '10/01/2020 15:30:55',
@@ -47,7 +47,7 @@ var app = new Vue({
                 visible: true,
                 selected: '',
                 lastSeen: '',
-                indiceTest: '',
+                currentDeletedMessageIndex: '',
                 messages: [
                     {
                         date: '20/03/2020 16:30:00',
@@ -79,7 +79,7 @@ var app = new Vue({
                 visible: true,
                 selected: '',
                 lastSeen: '',
-                indiceTest: '',
+                currentDeletedMessageIndex: '',
                 messages: [
                     {
                         date: '28/03/2020 10:10:40',
@@ -111,7 +111,7 @@ var app = new Vue({
                 visible: true,
                 selected: '',
                 lastSeen: '',
-                indiceTest: '',
+                currentDeletedMessageIndex: '',
                 messages: [
                     {
                         date: '10/01/2020 15:30:55',
@@ -130,7 +130,7 @@ var app = new Vue({
                 ],
             },
         ],
-        // Lista delle risposte automatiche del computer
+        // List of automatic computer replies and user possible messages
         automaticReplies: [
             {
                 userText: 'hey',
@@ -155,11 +155,11 @@ var app = new Vue({
         ]
     },
     methods: {
-        // Funzione che mostra la chat in base all'indice del contatto
+        // This function shows the related chat based on the contact index
         showChat(index) {
             this.contactIndex = index;
         },
-        // Funzione per filtrare le chat per nome del contatto tramite la search bar nella lista contatti
+        // This function filters the chat by contact name and lets you search them in the contact search bar
         filterChat() {
             this.contacts.forEach((element) => {                
                 if (element.name.toLowerCase().includes(this.searchContact.toLowerCase())) {
@@ -169,7 +169,7 @@ var app = new Vue({
                 }
             });
         },
-        // Funzione che invia il messaggio al computer e fa partire una risposta automatica in base al messaggio
+        // This function sends your messages and replies with an automatic response
         sendMessage() {
             let computerReply = 'Non ho capito, mi dispiace!';
 
@@ -201,7 +201,7 @@ var app = new Vue({
                 });
             }, 1000);
         },
-        // Funzione per aprire il dropdown del messaggio in base all'indice di esso
+        // This function opens the dropdown based on the message index
         toggleDropdown(index) {
             let indice = index;
             this.contacts[this.contactIndex].messages.forEach((element, index) => {
@@ -210,24 +210,24 @@ var app = new Vue({
                 }
             });
         },
-        // Funzione che chiude il dropdown
+        // This function closes the dropdown
         closeDropdown () {
             this.contacts[this.contactIndex].messages.forEach((element) => {
                 element.userClick = false;
             });
         },
-        // Funzione che elimina il messaggio selezionato in base all'indice
+        // This function deletes the message through index and it populates currentDeletedMessageIndex in every contact
         deleteMessage(index) {
             let indice = index;
             this.contacts[this.contactIndex].messages.forEach((element, index) => {
                 if (indice == index) {
                     element.shown = false;
                     element.userClick = false;
-                    this.contacts[this.contactIndex].indiceTest = index;
+                    this.contacts[this.contactIndex].currentDeletedMessageIndex = index;
                 }
             });
         },
-        // Funzione che seleziona il contatto nella lista contatti mantenendolo attivo
+        // This functions keeps the contact selected when you select a contact on the list
         selectContact(index) {
             let indice = index;
             this.contacts.forEach((element, index) => {
@@ -238,8 +238,8 @@ var app = new Vue({
                 }
             });
         },
-        // Funzione che permette di switchare da light a dark mode
-        darkThemeOn() {
+        // This functions lets you turn on and of the dark mode
+        darkThemeOnOff() {
             let darkTheme = document.getElementById('darkmode');
 
             if (this.darkMode) {

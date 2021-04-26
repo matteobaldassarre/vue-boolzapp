@@ -43,7 +43,7 @@
                                 </li>
 
                                 <li>
-                                    <label class="switch"><input type="checkbox" @click="darkThemeOn()"/>
+                                    <label class="switch"><input type="checkbox" @click="darkThemeOnOff()"/>
                                         <div></div>
                                     </label>
                                 </li>
@@ -110,14 +110,14 @@
                                         {{ contact.messages[contact.messages.length - 1].text.substring(0, 30) + '...' }}
                                     </span>
                                     <span v-else class="chat-anticipation">
-                                        {{ contact.messages[contact.indiceTest - 1].text.substring(0, 30) + '...' }}
+                                        {{ contact.messages[contact.currentDeletedMessageIndex - 1].text.substring(0, 30) + '...' }}
                                     </span>
                                     <!-- Date Anticipation -->
                                     <span v-if="contact.messages[contact.messages.length - 1].shown" class="chat-date">
                                         {{ contact.messages[contact.messages.length - 1].date }}
                                     </span>
                                     <span v-else class="chat-date">
-                                        {{ contact.messages[contact.indiceTest - 1].date }}
+                                        {{ contact.messages[contact.currentDeletedMessageIndex - 1].date }}
                                     </span>
                                 </div>
                                 <!-- End Contact Info -->
