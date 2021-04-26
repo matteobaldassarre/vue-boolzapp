@@ -141,7 +141,7 @@ var app = new Vue({
                 computerReply: 'mi fa piacere :)'
             },
             {
-                userText: 'andiamo al cinema?',
+                userText: 'hey, ti va di andare al cinema?',
                 computerReply: 'ok, volentieri!'
             },
             {
@@ -244,7 +244,7 @@ var app = new Vue({
                 darkTheme.setAttribute("href", "css/darkmode.css");
                 this.darkMode = true;
             }
-        }
+        },
     }
 });
 

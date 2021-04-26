@@ -105,11 +105,19 @@
                                     <span class="contact-name">
                                         {{ contact.name }}
                                     </span>
-                                    <span class="chat-anticipation">
+                                    <!-- Chat Anticipation -->
+                                    <span v-if="contact.messages[contact.messages.length - 1].shown" class="chat-anticipation">
                                         {{ contact.messages[contact.messages.length - 1].text.substring(0, 30) + '...' }}
                                     </span>
-                                    <span class="chat-date">
+                                    <span v-else class="chat-anticipation">
+                                        <em class="grey-txt"><i class="fas fa-ban"></i> messaggio eliminato</em>
+                                    </span>
+                                    <!-- Date Anticipation -->
+                                    <span v-if="contact.messages[contact.messages.length - 1].shown" class="chat-date">
                                         {{ contact.messages[contact.messages.length - 1].date}}
+                                    </span>
+                                    <span v-else class="chat-anticipation">
+                                        
                                     </span>
                                 </div>
                                 <!-- End Contact Info -->
