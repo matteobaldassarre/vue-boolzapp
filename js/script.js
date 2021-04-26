@@ -15,6 +15,7 @@ var app = new Vue({
                 visible: true,
                 selected: 'selectedActive',
                 lastSeen: '',
+                indiceTest: '',
                 messages: [
                     {
                         date: '10/01/2020 15:30:55',
@@ -46,6 +47,7 @@ var app = new Vue({
                 visible: true,
                 selected: '',
                 lastSeen: '',
+                indiceTest: '',
                 messages: [
                     {
                         date: '20/03/2020 16:30:00',
@@ -77,6 +79,7 @@ var app = new Vue({
                 visible: true,
                 selected: '',
                 lastSeen: '',
+                indiceTest: '',
                 messages: [
                     {
                         date: '28/03/2020 10:10:40',
@@ -108,6 +111,7 @@ var app = new Vue({
                 visible: true,
                 selected: '',
                 lastSeen: '',
+                indiceTest: '',
                 messages: [
                     {
                         date: '10/01/2020 15:30:55',
@@ -219,6 +223,7 @@ var app = new Vue({
                 if (indice == index) {
                     element.shown = false;
                     element.userClick = false;
+                    this.contacts[this.contactIndex].indiceTest = index;
                 }
             });
         },
@@ -244,7 +249,7 @@ var app = new Vue({
                 darkTheme.setAttribute("href", "css/darkmode.css");
                 this.darkMode = true;
             }
-        },
+        }
     }
 });
 
