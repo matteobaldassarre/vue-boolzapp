@@ -15,7 +15,6 @@ var app = new Vue({
                 visible: true,
                 selected: 'selectedActive',
                 lastSeen: '',
-                currentDeletedMessageIndex: '',
                 messages: [
                     {
                         date: '10/01/2020 15:30:55',
@@ -47,7 +46,6 @@ var app = new Vue({
                 visible: true,
                 selected: '',
                 lastSeen: '',
-                currentDeletedMessageIndex: '',
                 messages: [
                     {
                         date: '20/03/2020 16:30:00',
@@ -79,7 +77,6 @@ var app = new Vue({
                 visible: true,
                 selected: '',
                 lastSeen: '',
-                currentDeletedMessageIndex: '',
                 messages: [
                     {
                         date: '28/03/2020 10:10:40',
@@ -111,7 +108,6 @@ var app = new Vue({
                 visible: true,
                 selected: '',
                 lastSeen: '',
-                currentDeletedMessageIndex: '',
                 messages: [
                     {
                         date: '10/01/2020 15:30:55',
@@ -223,9 +219,25 @@ var app = new Vue({
                 if (indice == index) {
                     element.shown = false;
                     element.userClick = false;
-                    this.contacts[this.contactIndex].currentDeletedMessageIndex = index;
                 }
             });
+        },
+        // This functions gets the date and text of the last chat message
+        getLastMessage(contact) {
+            var lastMessage = {
+                text : 'There aren\'t any messages',
+                date : ''
+            };
+
+            contact.messages.forEach((element, index) => {
+
+                if (element.shown == true) {
+                    lastMessage.text = element.text;
+                    lastMessage.date = element.date;
+                }
+            });
+
+            return lastMessage;
         },
         // This functions keeps the contact selected when you select a contact on the list
         selectContact(index) {

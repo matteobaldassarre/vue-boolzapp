@@ -105,19 +105,13 @@
                                     <span class="contact-name">
                                         {{ contact.name }}
                                     </span>
-                                    <!-- Chat Anticipation -->
-                                    <span v-if="contact.messages[contact.messages.length - 1].shown" class="chat-anticipation">
-                                        {{ contact.messages[contact.messages.length - 1].text.substring(0, 30) + '...' }}
-                                    </span>
-                                    <span v-else class="chat-anticipation">
-                                        {{ contact.messages[contact.currentDeletedMessageIndex - 1].text.substring(0, 30) + '...' }}
+                                    <!-- Chat Anticipation -->                                    
+                                    <span class="chat-anticipation">
+                                        {{ getLastMessage(contact).text }}
                                     </span>
                                     <!-- Date Anticipation -->
-                                    <span v-if="contact.messages[contact.messages.length - 1].shown" class="chat-date">
-                                        {{ contact.messages[contact.messages.length - 1].date }}
-                                    </span>
-                                    <span v-else class="chat-date">
-                                        {{ contact.messages[contact.currentDeletedMessageIndex - 1].date }}
+                                    <span class="chat-date">
+                                        {{ getLastMessage(contact).date }}
                                     </span>
                                 </div>
                                 <!-- End Contact Info -->
